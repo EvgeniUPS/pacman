@@ -1,9 +1,9 @@
 require("babel-register");
 
 const ora = require("ora");
-const challk = require("challk");
+const challk = require("chalk");
 const webpack = require("webpack");
-const config = require("./webpack.config");
+const config = require("./webpack.config").default;
 
 const spinner = ora("building...");
 spinner.start();
