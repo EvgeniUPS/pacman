@@ -26,4 +26,15 @@ export default (
     player.size,
     player.size
   );
+  ctx.drawImage(
+    image,
+    enemy.pacX,
+    enemy.pacY,
+    32,
+    32,
+    enemy.x,
+    enemy.y,
+    enemy.size,
+    enemy.size
+  );
 };
