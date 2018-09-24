@@ -1,7 +1,7 @@
 require("babel-register");
 
 const ora = require("ora");
-const challk = require("chalk");
+const chalk = require("chalk");
 const webpack = require("webpack");
 const config = require("./webpack.config").default;
 
