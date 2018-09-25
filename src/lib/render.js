@@ -31,7 +31,14 @@ export default (
     enemy.pacX = 384;
     powerdot.ghosteat = true;
   }
-
+  if (powerdot.ghosteat) {
+    powerdot.pcountdoun--;
+    if (powerdot.pcountdoun <= 0) {
+      powerdot.ghosteat = false;
+      enemy.pacX = powerdot.ghostNum;
+      enemy.speed = randomeFunc(3);
+    }
+  }
   if (!powerdot.powerup) {
     powerdot.x = randomeFunc(canvas.width - 62);
     powerdot.y = randomeFunc(canvas.height - 62);
@@ -55,6 +62,10 @@ export default (
     enemy.speed = randomeFunc(3);
     enemy.dirX = 0;
     enemy.dirY = 0;
+
+    if (powerdot.ghosteat) {
+      enemy.speed = enemy.speed * -1; //or !enemy.speed
+    }
 
     if (enemy.moving % 2) {
       enemy.dirX = player.x < enemy.x ? -enemy.speed : enemy.speed;
