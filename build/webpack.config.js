@@ -1,6 +1,9 @@
 import path from "path";
 
 export default {
+  mode: "development",
+  // mode: "production",
+  // mode: "none",
   entry: {
     app: path.join(__dirname, "..", "src/index.js")
   },

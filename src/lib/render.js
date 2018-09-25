@@ -1,5 +1,7 @@
 import randomeFunc from "./randomeFunc";
 
+let showEnemy = false;
+
 export default (
   ctx,
   canvas,
@@ -16,6 +18,19 @@ export default (
 
   ctx.fillStyle = "white";
   ctx.fillText(`Человек: ${pscore}    Сопливчик: ${gscore}`, 2, 20);
+
+  if (!showEnemy) {
+    enemy.pacX = randomeFunc(5) * 64;
+    enemy.speed = randomeFunc(3);
+    enemy.x = randomeFunc(canvas.width - 62);
+    enemy.y = randomeFunc(canvas.height - 62);
+    showEnemy = true;
+  } else {
+    ctx.fillStyle = "#ffff00";
+    ctx.beginPath();
+    ctx.arc(powerdot.x, powerdot.y, 8, 0, Math.PI * 2, true);
+    ctx.fill();
+  }
 
   if (enemy.moving <= 0) {
     enemy.moving = randomeFunc(30) * 3;
