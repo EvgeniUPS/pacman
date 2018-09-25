@@ -1,3 +1,5 @@
+import randomeFunc from "./randomeFunc";
+
 export default (
   ctx,
   canvas,
@@ -14,6 +16,24 @@ export default (
 
   ctx.fillStyle = "white";
   ctx.fillText(`Человек: ${pscore}    Сопливчик: ${gscore}`, 2, 20);
+
+  if (enemy.moving <= 0) {
+    enemy.moving = randomeFunc(30) * 3;
+    enemy.speed = randomeFunc(3);
+    enemy.dirX = 0;
+    enemy.dirY = 0;
+
+    if (enemy.moving % 2) {
+      enemy.dirX = player.x < enemy.x ? -enemy.speed : enemy.speed;
+    } else {
+      enemy.dirY = player.y < enemy.y ? -enemy.speed : enemy.speed;
+    }
+  }
+
+  enemy.moving--;
+  enemy.x += enemy.dirX;
+  enemy.y += enemy.dirY;
+  enemy.pacY = enemy.pacY === 0 ? (enemy.pacY = 32) : (enemy.pacY = 0);
 
   ctx.drawImage(
     image,
