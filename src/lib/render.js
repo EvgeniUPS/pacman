@@ -20,6 +20,24 @@ export default (
   ctx.fillText(`Человек: ${pscore}    Сопливчик: ${gscore}`, 2, 20);
 
   if (
+    player.x <= enemy.x + 12 &&
+    player.y <= enemy.y + 32 &&
+    enemy.x <= player.x + 12 &&
+    enemy.y <= player.y + 32
+  ) {
+    if (powerdot.ghosteat) {
+      pscore++;
+    } else {
+      gscore++;
+    }
+    enemy.x = randomeFunc(canvas.width - 62);
+    enemy.y = randomeFunc(canvas.height - 62);
+    player.x = 10;
+    player.y = 30;
+    powerdot.pcountdoun = 0;
+  }
+
+  if (
     player.x <= powerdot.x &&
     player.y <= powerdot.y &&
     powerdot.x <= player.x + 20 &&
@@ -31,6 +49,7 @@ export default (
     enemy.pacX = 384;
     powerdot.ghosteat = true;
   }
+
   if (powerdot.ghosteat) {
     powerdot.pcountdoun--;
     if (powerdot.pcountdoun <= 0) {
@@ -101,4 +120,6 @@ export default (
     enemy.size,
     enemy.size
   );
+
+  return { pscore, gscore };
 };
